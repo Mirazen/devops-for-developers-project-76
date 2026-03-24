@@ -10,15 +10,15 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-    - geerlingguy.pip
-    - geerlingguy.docker
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker
 
 - name: Deploy and Monitor application
-  hosts: webservers
+  hosts: all
   become: true
   tags: deploy
   roles:
-    - name: datadog.datadog
+    - role: datadog.datadog
   tasks:
     - name: Ensure app directory exists
       ansible.builtin.file:

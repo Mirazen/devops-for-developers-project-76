@@ -14,7 +14,7 @@
     - geerlingguy.docker
 
 - name: Deploy application
-  hosts: all
+  hosts: webservers
   become: true
   tags: deploy
   tasks:

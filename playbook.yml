@@ -1,0 +1,7 @@
+---
+- name: Prepare web servers
+  hosts: all
+  become: yes
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker

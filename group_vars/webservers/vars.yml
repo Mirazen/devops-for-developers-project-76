@@ -1,0 +1,3 @@
+---
+db_password: "{{ vault_db_password | default('dummy_pass') }}"
+datadog_api_key: "{{ vault_datadog_api_key | default('00000000000000000000000000000000') }}"

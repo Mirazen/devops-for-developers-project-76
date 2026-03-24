@@ -7,11 +7,8 @@ db_host: "rc1b-2tkbvtsf5s2r8ao8.mdb.yandexcloud.net"
 db_port: "6432"
 db_user: "db_user"
 db_name: "db_blog"
-db_password: "{{ vault_db_password | default('dummy_pass') }}"
 
 datadog_site: "us5.datadoghq.com"
-# Добавляем default, чтобы робот Хекслета не падал, если не найдет ключ в Vault
-datadog_api_key: "{{ vault_datadog_api_key | default('00000000000000000000000000000000') }}"
 datadog_config:
   tags:
     - "project:hexlet"

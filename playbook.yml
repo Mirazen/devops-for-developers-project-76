@@ -1,5 +1,5 @@
 ---
-- name: Prepare web servers
+- name: Setup and Deploy Hexlet Project
   hosts: all
   become: true
 
@@ -12,25 +12,26 @@
   roles:
     - role: geerlingguy.pip
     - role: geerlingguy.docker
-
-- name: Deploy and Monitor application
-  hosts: all
-  become: true
-  tags: deploy
-  roles:
     - role: datadog.datadog
+      when: "'webservers' in group_names"
+      tags: deploy
+
   tasks:
     - name: Ensure app directory exists
       ansible.builtin.file:
         path: /opt/redmine
         state: directory
         mode: '0755'
+      when: "'webservers' in group_names"
+      tags: deploy
 
     - name: Create .env file
       ansible.builtin.template:
         src: templates/.env.j2
         dest: /opt/redmine/.env
         mode: '0644'
+      when: "'webservers' in group_names"
+      tags: deploy
 
     - name: Start Redmine container
       community.docker.docker_container:
@@ -41,3 +42,5 @@
         env_file: /opt/redmine/.env
         ports:
           - "{{ redmine_port }}:3000"
+      when: "'webservers' in group_names"
+      tags: deploy

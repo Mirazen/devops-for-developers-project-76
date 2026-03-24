@@ -1,12 +1,12 @@
 ---
 - name: Prepare web servers
   hosts: all
-  become: yes
+  become: true
 
   pre_tasks:
     - name: Update apt cache
       ansible.builtin.apt:
-        update_cache: yes
+        update_cache: true
       when: ansible_os_family == 'Debian'
 
   roles:

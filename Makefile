@@ -8,7 +8,7 @@ deploy:
 	ansible-playbook -i inventory.ini playbook.yml --tags deploy --vault-password-file vault-password
 
 encrypt:
-	ansible-vault encrypt group_vars/webservers/vault.yml --vault-password-file vault-password
+	ansible-vault encrypt group_vars/vault.yml --vault-password-file vault-password
 
 edit-vault:
-	ansible-vault edit group_vars/webservers/vault.yml --vault-password-file vault-password
+	ansible-vault edit group_vars/vault.yml --vault-password-file vault-password

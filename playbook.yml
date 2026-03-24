@@ -13,10 +13,12 @@
     - geerlingguy.pip
     - geerlingguy.docker
 
-- name: Deploy application
+- name: Deploy and Monitor application
   hosts: webservers
   become: true
   tags: deploy
+  roles:
+    - name: datadog.datadog
   tasks:
     - name: Ensure app directory exists
       ansible.builtin.file:

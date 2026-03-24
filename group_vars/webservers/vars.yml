@@ -5,3 +5,19 @@ db_port: "6432"
 db_user: "db_user"
 db_name: "db_blog"
 db_password: "{{ vault_db_password }}"
+
+datadog_site: "us5.datadoghq.com"
+
+datadog_api_key: "{{ vault_datadog_api_key }}"
+datadog_config:
+  tags:
+    - "project:hexlet"
+    - "env:production"
+
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - name: Redmine Check
+        url: "http://localhost:8080"
+        timeout: 5

@@ -12,3 +12,29 @@
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
+
+- name: Deploy application
+  hosts: all
+  become: true
+  tags: deploy
+  tasks:
+    - name: Ensure app directory exists
+      ansible.builtin.file:
+        path: /opt/redmine
+        state: directory
+        mode: '0755'
+
+    - name: Create .env file
+      ansible.builtin.template:
+        src: templates/.env.j2
+        dest: /opt/redmine/.env
+
+    - name: Start Redmine container
+      community.docker.docker_container:
+        name: redmine
+        image: redmine:latest
+        state: started
+        restart_policy: always
+        env_file: /opt/redmine/.env
+        ports:
+          - "{{ redmine_port }}:3000"

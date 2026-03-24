@@ -20,3 +20,11 @@ make install-requirements
 \`\`\`bash
 make setup
 \`\`\`
+
+## Деплой (Deploy)
+Для автоматического развертывания приложения (Redmine) на серверах выполните команду:
+\`\`\`bash
+make deploy
+\`\`\`
+
+**Приложение доступно по адресу:** [https://danya-hexlet-devops.ru](https://danya-hexlet-devops.ru)

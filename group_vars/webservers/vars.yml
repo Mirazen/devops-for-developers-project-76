@@ -1,0 +1,7 @@
+---
+redmine_port: 8080
+db_host: "rc1b-2tkbvtsf5s2r8ao8.mdb.yandexcloud.net"
+db_port: "6432"
+db_user: "db_user"
+db_name: "db_blog"
+db_password: "{{ vault_db_password }}"
